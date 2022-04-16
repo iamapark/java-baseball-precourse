@@ -6,7 +6,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
 /**
  * @author jinyoung
- * @date 2022/04/14
+ * @since 2022/04/14
  */
 public class RandomGameValue {
 
@@ -26,9 +26,8 @@ public class RandomGameValue {
     }
 
     private static List<Integer> generateRandomValues() {
-        final List<Integer> randomValues = Arrays.asList(
-            pickNumberInRange(1, 3), pickNumberInRange(4, 6), pickNumberInRange(7, 9)
+        return Arrays.asList(
+                pickNumberInRange(1, 3), pickNumberInRange(4, 6), pickNumberInRange(7, 9)
         );
-        return randomValues;
     }
 }

@@ -1,8 +1,11 @@
 package baseball;
 
+import static baseball.model.BaseballGameResult.decideGameResult;
+
 import baseball.model.BaseballGameResult;
 import baseball.model.RandomGameValue;
 import baseball.model.UserInputGameValue;
+import camp.nextstep.edu.missionutils.Console;
 
 /**
  * @author jinyoung
@@ -15,19 +18,13 @@ public class BaseballGame {
 
     public void start() {
         boolean shouldGameKeepGoing = true;
-        while(shouldGameKeepGoing) {
-            // 사용자로부터 값을 입력받는다.
+        while (shouldGameKeepGoing) {
             final UserInputGameValue userInputGameValue = UserInputGameValue.get();
-
-            // Generate random 3 digit numeric value
             final RandomGameValue randomGameValue = generateRandomGameValue();
-
-            // userInput, randomValue 비교하여 randomGeneratedGame 결과를 계산 한다.
-            final BaseballGameResult baseballGameResult = BaseballGameResult.decideGameResult(userInputGameValue, randomGameValue);
-            System.out.println(baseballGameResult.getResultString());
+            final BaseballGameResult baseballGameResult = decideGameResult(userInputGameValue, randomGameValue);
 
             this.isLastGameUserWin = baseballGameResult.isUserWin();
-            shouldGameKeepGoing = baseballGameResult.shouldKeepGoing();
+            shouldGameKeepGoing = shouldGameKeepGoing(baseballGameResult);
         }
     }
 
@@ -45,5 +42,17 @@ public class BaseballGame {
         }
 
         return isLastGameUserWin;
+    }
+
+    private boolean shouldGameKeepGoing(BaseballGameResult baseballGameResult) {
+        if (!baseballGameResult.isUserWin()) {
+            return true;
+        }
+
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println("게임을 새로 시작하시려면 1, 종료하려면 2를 입력하세요.");
+        final String continueGameOrNot = Console.readLine();
+
+        return "1".equals(continueGameOrNot);
     }
 }

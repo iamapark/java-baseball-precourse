@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author jinyoung
- * @date 2022/04/16
+ * @since 2022/04/16
  */
 class BaseballGameResultTest {
 
@@ -41,7 +41,7 @@ class BaseballGameResultTest {
     // 스트라이크 + 볼 (1스트라이크 1볼, 1스트라이크 2볼)
     @Test
     void test_gameResult_strike_and_ball() {
-        assertGameResultAndOutput("123", asList(1, 5, 2), "1" + BALL_NAME + " 1" +STRIKE_NAME , false);
+        assertGameResultAndOutput("123", asList(1, 5, 2), "1" + BALL_NAME + " 1" + STRIKE_NAME, false);
     }
 
     // 3 스트라이크
@@ -50,7 +50,8 @@ class BaseballGameResultTest {
         assertGameResultAndOutput("498", asList(4, 9, 8), "3" + STRIKE_NAME, true);
     }
 
-    private void assertGameResultAndOutput(String userInput, List<Integer> randomValues, String expectedOutputString, boolean expectedUserWin) {
+    private void assertGameResultAndOutput(String userInput, List<Integer> randomValues,
+                                           String expectedOutputString, boolean expectedUserWin) {
         final UserInputGameValue userInputGameValue = new UserInputGameValue(userInput);
         final RandomGameValue randomGameValue = new RandomGameValue(new LinkedHashSet<>(randomValues));
 

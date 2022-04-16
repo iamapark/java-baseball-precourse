@@ -67,7 +67,8 @@ public class UserInputGameValue {
     }
 
     private static void checkIsNumberValue(String userInput, int index) {
-        final boolean isValidNumberCharacter = VALID_GAME_VALUE_NUMBERS.contains(String.valueOf(userInput.charAt(index)));
+        final boolean isValidNumberCharacter = VALID_GAME_VALUE_NUMBERS.contains(
+                String.valueOf(userInput.charAt(index)));
         if (!isValidNumberCharacter) {
             throw new IllegalArgumentException();
         }
