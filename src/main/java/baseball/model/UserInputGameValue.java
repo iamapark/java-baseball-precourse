@@ -11,7 +11,7 @@ import static baseball.constants.BaseballGameBaseConstant.VALID_USER_INPUT_NUMBE
 
 /**
  * @author jinyoung
- * @date 2022/04/14
+ * @since 2022/04/14
  */
 public class UserInputGameValue {
 
@@ -34,23 +34,28 @@ public class UserInputGameValue {
     }
 
     public void validate() {
-        System.out.println("userInput: " + userInput);
-        if (Objects.isNull(userInput) || "".equals(userInput)) {
-            throw new IllegalArgumentException();
-        }
+        checkNullOrEmpty();
+        checkNumberOfDigits();
+        checkValidValue();
+    }
 
+    private void checkValidValue() {
+        final Set<Character> characterSet = new HashSet<>();
+        for (int index = 0; index < userInput.length(); index++) {
+            validateUserInputByIndex(userInput, index);
+            validateUserInputIsDuplicated(characterSet, userInput.charAt(index));
+        }
+    }
+
+    private void checkNumberOfDigits() {
         if (userInput.length() != VALID_USER_INPUT_DIGIT) {
             throw new IllegalArgumentException();
         }
+    }
 
-        for (int index = 0; index < userInput.length(); index++) {
-            validateUserInputByIndex(userInput, index);
-        }
-
-        // 중복 체크
-        final Set<Character> characterSet = new HashSet<>();
-        for (int index = 0; index < userInput.length(); index++) {
-            validateUserInputIsDuplicated(characterSet, userInput.charAt(index));
+    private void checkNullOrEmpty() {
+        if (Objects.isNull(userInput) || "".equals(userInput)) {
+            throw new IllegalArgumentException();
         }
     }
 
