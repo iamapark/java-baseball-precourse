@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static baseball.constants.BaseballGameBaseConstant.VALID_USER_INPUT_DIGIT;
-import static baseball.constants.BaseballGameBaseConstant.VALID_USER_INPUT_NUMBERS;
+import static baseball.constants.BaseballGameBaseConstant.VALID_GAME_VALUE_DIGITS;
+import static baseball.constants.BaseballGameBaseConstant.VALID_GAME_VALUE_NUMBERS;
 
 /**
  * @author jinyoung
@@ -42,13 +42,13 @@ public class UserInputGameValue {
     private void checkValidValue() {
         final Set<Character> characterSet = new HashSet<>();
         for (int index = 0; index < userInput.length(); index++) {
-            validateUserInputByIndex(userInput, index);
-            validateUserInputIsDuplicated(characterSet, userInput.charAt(index));
+            checkIsNumberValue(userInput, index);
+            checkValueIsDuplicated(characterSet, userInput.charAt(index));
         }
     }
 
     private void checkNumberOfDigits() {
-        if (userInput.length() != VALID_USER_INPUT_DIGIT) {
+        if (userInput.length() != VALID_GAME_VALUE_DIGITS) {
             throw new IllegalArgumentException();
         }
     }
@@ -59,16 +59,15 @@ public class UserInputGameValue {
         }
     }
 
-    private static void validateUserInputIsDuplicated(Set<Character> characterSet, char character) {
+    private static void checkValueIsDuplicated(Set<Character> characterSet, char character) {
         if (characterSet.contains(character)) {
             throw new IllegalArgumentException();
-        } else {
-            characterSet.add(character);
         }
+        characterSet.add(character);
     }
 
-    private static void validateUserInputByIndex(String userInput, int index) {
-        final boolean isValidNumberCharacter = VALID_USER_INPUT_NUMBERS.contains(String.valueOf(userInput.charAt(index)));
+    private static void checkIsNumberValue(String userInput, int index) {
+        final boolean isValidNumberCharacter = VALID_GAME_VALUE_NUMBERS.contains(String.valueOf(userInput.charAt(index)));
         if (!isValidNumberCharacter) {
             throw new IllegalArgumentException();
         }
