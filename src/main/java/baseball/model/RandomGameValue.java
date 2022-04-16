@@ -10,21 +10,25 @@ import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
  */
 public class RandomGameValue {
 
-    private final Set<Integer> randomValues;
+    private final LinkedHashSet<Integer> randomValues;
 
-    public RandomGameValue(Set<Integer> randomValue) {
+    protected RandomGameValue(LinkedHashSet<Integer> randomValue) {
         this.randomValues = randomValue;
     }
 
-    public Set<Integer> getRandomValues() {
-        return randomValues;
+    public List<Integer> getRandomValues() {
+        return new ArrayList<>(randomValues);
     }
 
     public static RandomGameValue get() {
+        final List<Integer> randomValues = generateRandomValues();
+        return new RandomGameValue(new LinkedHashSet<>(randomValues));
+    }
+
+    private static List<Integer> generateRandomValues() {
         final List<Integer> randomValues = Arrays.asList(
             pickNumberInRange(1, 3), pickNumberInRange(4, 6), pickNumberInRange(7, 9)
         );
-        Collections.shuffle(randomValues);
-        return new RandomGameValue(new HashSet<>(randomValues));
+        return randomValues;
     }
 }

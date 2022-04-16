@@ -3,7 +3,7 @@ package baseball.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Set;
+import java.util.List;
 import java.util.function.Consumer;
 
 import static baseball.constants.BaseballGameBaseConstant.VALID_GAME_VALUE_DIGITS;
@@ -33,7 +33,7 @@ class RandomGameValueTest {
         ));
     }
 
-    private void doTestMultipleTimes(Consumer<Set<Integer>> consumer) {
+    private void doTestMultipleTimes(Consumer<List<Integer>> consumer) {
         for (int count = 0; count < 100; count++) {
             consumer.accept(RandomGameValue.get().getRandomValues());
         }

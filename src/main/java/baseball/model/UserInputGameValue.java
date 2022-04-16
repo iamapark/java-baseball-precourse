@@ -17,7 +17,7 @@ public class UserInputGameValue {
 
     private final String userInput;
 
-    private UserInputGameValue(String userInput) {
+    protected UserInputGameValue(String userInput) {
         this.userInput = userInput;
     }
 
