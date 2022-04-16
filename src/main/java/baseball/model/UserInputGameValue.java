@@ -1,4 +1,6 @@
-package baseball.validator;
+package baseball.model;
+
+import camp.nextstep.edu.missionutils.Console;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -11,11 +13,28 @@ import static baseball.constants.BaseballGameBaseConstant.VALID_USER_INPUT_NUMBE
  * @author jinyoung
  * @date 2022/04/14
  */
-public class UserInputValidator {
+public class UserInputGameValue {
 
-    private UserInputValidator() {}
+    private final String userInput;
 
-    public static void validateUserInput(String userInput) {
+    private UserInputGameValue(String userInput) {
+        this.userInput = userInput;
+    }
+
+    public String getUserInput() {
+        return userInput;
+    }
+
+    public static UserInputGameValue get() {
+        System.out.print("숫자를 입력해주세요 : ");
+        final String userInput = Console.readLine();
+        final UserInputGameValue userInputGame = new UserInputGameValue(userInput);
+        userInputGame.validate();
+        return userInputGame;
+    }
+
+    public void validate() {
+        System.out.println("userInput: " + userInput);
         if (Objects.isNull(userInput) || "".equals(userInput)) {
             throw new IllegalArgumentException();
         }
