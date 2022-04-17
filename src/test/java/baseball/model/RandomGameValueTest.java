@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static baseball.constants.BaseballGameBaseConstant.VALID_GAME_VALUE_DIGITS;
+import static baseball.constants.BaseballGameBaseConstant.VALID_NUMBER_OF_GAME_VALUE_DIGIT;
 import static baseball.constants.BaseballGameBaseConstant.VALID_GAME_VALUE_NUMBERS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,7 +24,7 @@ class RandomGameValueTest {
     @Test
     @DisplayName("RandomGameValue.get() 결과가 3자리인지 테스트")
     void test_randomGameValue_is_3_digits() {
-        doTestMultipleTimes(randomValues -> assertEquals(VALID_GAME_VALUE_DIGITS, randomValues.size()));
+        doTestMultipleTimes(randomValues -> assertEquals(VALID_NUMBER_OF_GAME_VALUE_DIGIT, randomValues.size()));
     }
 
     @Test

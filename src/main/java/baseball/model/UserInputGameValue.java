@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static baseball.constants.BaseballGameBaseConstant.VALID_GAME_VALUE_DIGITS;
+import static baseball.constants.BaseballGameBaseConstant.VALID_NUMBER_OF_GAME_VALUE_DIGIT;
 import static baseball.constants.BaseballGameBaseConstant.VALID_GAME_VALUE_NUMBERS;
 
 /**
@@ -48,7 +48,7 @@ public class UserInputGameValue {
     }
 
     private void checkNumberOfDigits() {
-        if (userInput.length() != VALID_GAME_VALUE_DIGITS) {
+        if (userInput.length() != VALID_NUMBER_OF_GAME_VALUE_DIGIT) {
             throw new IllegalArgumentException();
         }
     }

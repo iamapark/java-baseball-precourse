@@ -23,7 +23,6 @@ public class BaseballGame {
             final RandomGameValue randomGameValue = generateRandomGameValue();
             final BaseballGameResult baseballGameResult = decideGameResult(userInputGameValue, randomGameValue);
 
-            this.isLastGameUserWin = baseballGameResult.isUserWin();
             shouldGameKeepGoing = shouldGameKeepGoing(baseballGameResult);
         }
     }
@@ -41,18 +40,18 @@ public class BaseballGame {
             return true;
         }
 
-        return isLastGameUserWin;
+        return this.isLastGameUserWin;
     }
 
     private boolean shouldGameKeepGoing(BaseballGameResult baseballGameResult) {
-        if (!baseballGameResult.isUserWin()) {
+        this.isLastGameUserWin = baseballGameResult.isUserWin();
+        if (!this.isLastGameUserWin) {
             return true;
         }
 
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         System.out.println("게임을 새로 시작하시려면 1, 종료하려면 2를 입력하세요.");
         final String continueGameOrNot = Console.readLine();
-
         return "1".equals(continueGameOrNot);
     }
 }

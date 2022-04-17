@@ -25,24 +25,24 @@ public class BaseballGameResult {
     }
 
     public boolean isUserWin() {
-        return VALID_GAME_VALUE_DIGITS == this.strikeCount;
+        return VALID_NUMBER_OF_GAME_VALUE_DIGIT == this.strikeCount;
     }
 
     public String getResultString() {
         if (this.strikeCount == 0 && this.ballCount == 0) {
-            return NOTHING_NAME;
+            return NOTHING_TITLE;
         }
 
         String resultString = "";
-        resultString += this.ballCount != 0 ? this.ballCount + "" + BALL_NAME : "";
-        resultString += this.strikeCount != 0 ? " " + this.strikeCount + "" + STRIKE_NAME : "";
+        resultString += this.ballCount != 0 ? this.ballCount + "" + BALL_TITLE : "";
+        resultString += this.strikeCount != 0 ? " " + this.strikeCount + "" + STRIKE_TITLE : "";
 
         return resultString.replaceAll("^ ", "").replaceAll(" $", "");
     }
 
     private int decideStrikeCount(UserInputGameValue userInputGame, RandomGameValue randomGeneratedGame) {
         int strikeCount = 0;
-        for (int index = 0; index < VALID_GAME_VALUE_DIGITS; index++) {
+        for (int index = 0; index < VALID_NUMBER_OF_GAME_VALUE_DIGIT; index++) {
             final String randomIndexValue = randomGeneratedGame.getRandomValues().get(index).toString();
             final String userInputIndexValue = String.valueOf(userInputGame.getUserInput().charAt(index));
             strikeCount += randomIndexValue.equals(userInputIndexValue) ? 1 : 0;
@@ -53,7 +53,7 @@ public class BaseballGameResult {
     private int decideBallCount(UserInputGameValue userInputGame, RandomGameValue randomGeneratedGame) {
         int ballCount = 0;
         final List<Integer> randomValues = randomGeneratedGame.getRandomValues();
-        for (int index = 0; index < VALID_GAME_VALUE_DIGITS; index++) {
+        for (int index = 0; index < VALID_NUMBER_OF_GAME_VALUE_DIGIT; index++) {
             final String userInputIndexValue = String.valueOf(userInputGame.getUserInput().charAt(index));
             final int sameCharacterIndex = randomValues.indexOf(Integer.valueOf(userInputIndexValue));
             // Check if same character exists and not same index
